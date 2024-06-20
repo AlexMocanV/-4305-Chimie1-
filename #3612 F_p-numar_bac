@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+
+bool sumadiv(int n)
+{
+    int d,S=0;
+    for(d=1;d*d<n;d++)
+    {
+         if(n%d==0)
+         S=S+d+(n/d);
+    }
+    if(d*d==n)
+    {
+      S=S+d;
+    }
+    return S%2==n%2;
+}
+
+int kpn(int a, int b, int k)
+{
+    int numere=0,alesul;
+    for(int i=a;i<=b&&numere<k;i++)
+    {
+        if(sumadiv(i)==true){/*std::cout<<i<<' ';*/alesul=i;numere++;}
+    }
+    if(numere==k){//std::cout<<'\n'; 
+            return alesul;}
+    else return -1;
+}
