@@ -1,0 +1,52 @@
+#include <fstream>
+#include <cmath>
+#include <bitset>
+
+std::string nume="chimie1";
+std::ifstream fin(nume+".in");
+std::ofstream fout(nume+".out");
+
+int d1,d2,nr1,nr2;
+std::bitset<33003>ap;
+int32_t f[33003];
+int logdea(int a)
+{
+    int c=a,nr=1;
+    while(a*c<=33000)
+    {
+        a*=c;nr++;
+    }
+    return nr;
+}
+void ciur()
+{
+    for(int i=0;i<=nr1;i++)
+    {
+        for(int j=0;j<=nr2;j++)
+        {
+            if(pow(d2,j)*pow(d1,i)<=33000)
+                ap[pow(d2,j)*pow(d1,i)]=1;
+        }
+    }
+}
+
+int main()
+{
+    int n,maxi=0,x;
+    fin>>n>>d1>>d2;
+    nr1=logdea(d1);
+    nr2=logdea(d2);
+    ciur();
+    for(int i=1;i<=n;i++)
+    {
+        fin>>x;
+        if(ap[x]==true){
+            maxi=std::max(x,maxi);
+            f[x]++;
+        }
+    }
+    if(maxi)
+    fout<<maxi<<' '<<f[maxi];
+    else fout<<"NU EXISTA";
+    return 0;
+}
