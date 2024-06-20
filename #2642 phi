@@ -1,0 +1,41 @@
+bool isPrime(int a)
+{
+    if(a==2)
+        return 1;
+    if(a==3)
+        return 1;
+    if(a%2==0)
+        return 0;
+    if(a%3==0)
+        return 0;
+    for(int i=5;i*i<=a;i+=6)
+    {
+        if(a%i==0 or a%(i+2)==0)
+            return 0;
+    }
+    return 1;
+}
+int Phi(int n)
+{
+    int i=2;
+    int ans=n;
+    if(isPrime(n)==1)
+        return n-1;
+    else
+    {
+        while(n!=1)
+        {
+            if(n%i==0)
+            {
+                ans=ans/i*(i-1);
+                while(n%i==0){n/=i;}
+
+            }
+            i++;
+            if(i*i>n){
+                i=n;
+            }
+        }
+        return ans;
+    }
+}
